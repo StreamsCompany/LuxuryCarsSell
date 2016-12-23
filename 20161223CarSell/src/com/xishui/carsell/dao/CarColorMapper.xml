@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.CarColorMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.CarColor" >
+    <id column="coloid" property="coloid" jdbcType="INTEGER" />
+    <result column="colorname" property="colorname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    coloid, colorname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from colortbl
+    where coloid = #{coloid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from colortbl
+    where coloid = #{coloid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.CarColor" >
+    insert into colortbl (coloid, colorname)
+    values (#{coloid,jdbcType=INTEGER}, #{colorname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.CarColor" >
+    insert into colortbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="coloid != null" >
+        coloid,
+      </if>
+      <if test="colorname != null" >
+        colorname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="coloid != null" >
+        #{coloid,jdbcType=INTEGER},
+      </if>
+      <if test="colorname != null" >
+        #{colorname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.CarColor" >
+    update colortbl
+    <set >
+      <if test="colorname != null" >
+        colorname = #{colorname,jdbcType=CHAR},
+      </if>
+    </set>
+    where coloid = #{coloid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.CarColor" >
+    update colortbl
+    set colorname = #{colorname,jdbcType=CHAR}
+    where coloid = #{coloid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Goods" >
+    <id column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="goodsMrtPrice" property="goodsmrtprice" jdbcType="DECIMAL" />
+    <result column="goodsMemPrice" property="goodsmemprice" jdbcType="DECIMAL" />
+    <result column="goodsDiscount" property="goodsdiscount" jdbcType="DECIMAL" />
+    <result column="goodsDsc" property="goodsdsc" jdbcType="VARCHAR" />
+    <result column="goodsColor" property="goodscolor" jdbcType="INTEGER" />
+    <result column="goodsFormatId" property="goodsformatid" jdbcType="INTEGER" />
+    <result column="goodsSellerId" property="goodssellerid" jdbcType="INTEGER" />
+    <result column="mftId" property="mftid" jdbcType="INTEGER" />
+    <result column="goodsPicUrl" property="goodspicurl" jdbcType="VARCHAR" />
+    <result column="goodsNum" property="goodsnum" jdbcType="INTEGER" />
+    <result column="goodsTypeId" property="goodstypeid" jdbcType="INTEGER" />
+    <result column="goodsCmt" property="goodscmt" jdbcType="INTEGER" />
+    <result column="goodsUploadTime" property="goodsuploadtime" jdbcType="TIMESTAMP" />
+    <result column="goodsSellCount" property="goodssellcount" jdbcType="INTEGER" />
+    <result column="goodsHotSell" property="goodshotsell" jdbcType="INTEGER" />
+    <result column="goodsGroupBuy" property="goodsgroupbuy" jdbcType="INTEGER" />
+    <result column="goodsRecommend" property="goodsrecommend" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goodsId, goodsName, goodsMrtPrice, goodsMemPrice, goodsDiscount, goodsDsc, goodsColor, 
+    goodsFormatId, goodsSellerId, mftId, goodsPicUrl, goodsNum, goodsTypeId, goodsCmt, 
+    goodsUploadTime, goodsSellCount, goodsHotSell, goodsGroupBuy, goodsRecommend
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodstbl
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodstbl
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Goods" >
+    insert into goodstbl (goodsId, goodsName, goodsMrtPrice, 
+      goodsMemPrice, goodsDiscount, goodsDsc, 
+      goodsColor, goodsFormatId, goodsSellerId, 
+      mftId, goodsPicUrl, goodsNum, 
+      goodsTypeId, goodsCmt, goodsUploadTime, 
+      goodsSellCount, goodsHotSell, goodsGroupBuy, 
+      goodsRecommend)
+    values (#{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, #{goodsmrtprice,jdbcType=DECIMAL}, 
+      #{goodsmemprice,jdbcType=DECIMAL}, #{goodsdiscount,jdbcType=DECIMAL}, #{goodsdsc,jdbcType=VARCHAR}, 
+      #{goodscolor,jdbcType=INTEGER}, #{goodsformatid,jdbcType=INTEGER}, #{goodssellerid,jdbcType=INTEGER}, 
+      #{mftid,jdbcType=INTEGER}, #{goodspicurl,jdbcType=VARCHAR}, #{goodsnum,jdbcType=INTEGER}, 
+      #{goodstypeid,jdbcType=INTEGER}, #{goodscmt,jdbcType=INTEGER}, #{goodsuploadtime,jdbcType=TIMESTAMP}, 
+      #{goodssellcount,jdbcType=INTEGER}, #{goodshotsell,jdbcType=INTEGER}, #{goodsgroupbuy,jdbcType=INTEGER}, 
+      #{goodsrecommend,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Goods" >
+    insert into goodstbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="goodsmrtprice != null" >
+        goodsMrtPrice,
+      </if>
+      <if test="goodsmemprice != null" >
+        goodsMemPrice,
+      </if>
+      <if test="goodsdiscount != null" >
+        goodsDiscount,
+      </if>
+      <if test="goodsdsc != null" >
+        goodsDsc,
+      </if>
+      <if test="goodscolor != null" >
+        goodsColor,
+      </if>
+      <if test="goodsformatid != null" >
+        goodsFormatId,
+      </if>
+      <if test="goodssellerid != null" >
+        goodsSellerId,
+      </if>
+      <if test="mftid != null" >
+        mftId,
+      </if>
+      <if test="goodspicurl != null" >
+        goodsPicUrl,
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum,
+      </if>
+      <if test="goodstypeid != null" >
+        goodsTypeId,
+      </if>
+      <if test="goodscmt != null" >
+        goodsCmt,
+      </if>
+      <if test="goodsuploadtime != null" >
+        goodsUploadTime,
+      </if>
+      <if test="goodssellcount != null" >
+        goodsSellCount,
+      </if>
+      <if test="goodshotsell != null" >
+        goodsHotSell,
+      </if>
+      <if test="goodsgroupbuy != null" >
+        goodsGroupBuy,
+      </if>
+      <if test="goodsrecommend != null" >
+        goodsRecommend,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsmrtprice != null" >
+        #{goodsmrtprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsmemprice != null" >
+        #{goodsmemprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdiscount != null" >
+        #{goodsdiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdsc != null" >
+        #{goodsdsc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscolor != null" >
+        #{goodscolor,jdbcType=INTEGER},
+      </if>
+      <if test="goodsformatid != null" >
+        #{goodsformatid,jdbcType=INTEGER},
+      </if>
+      <if test="goodssellerid != null" >
+        #{goodssellerid,jdbcType=INTEGER},
+      </if>
+      <if test="mftid != null" >
+        #{mftid,jdbcType=INTEGER},
+      </if>
+      <if test="goodspicurl != null" >
+        #{goodspicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null" >
+        #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodstypeid != null" >
+        #{goodstypeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscmt != null" >
+        #{goodscmt,jdbcType=INTEGER},
+      </if>
+      <if test="goodsuploadtime != null" >
+        #{goodsuploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodssellcount != null" >
+        #{goodssellcount,jdbcType=INTEGER},
+      </if>
+      <if test="goodshotsell != null" >
+        #{goodshotsell,jdbcType=INTEGER},
+      </if>
+      <if test="goodsgroupbuy != null" >
+        #{goodsgroupbuy,jdbcType=INTEGER},
+      </if>
+      <if test="goodsrecommend != null" >
+        #{goodsrecommend,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Goods" >
+    update goodstbl
+    <set >
+      <if test="goodsname != null" >
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsmrtprice != null" >
+        goodsMrtPrice = #{goodsmrtprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsmemprice != null" >
+        goodsMemPrice = #{goodsmemprice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdiscount != null" >
+        goodsDiscount = #{goodsdiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsdsc != null" >
+        goodsDsc = #{goodsdsc,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscolor != null" >
+        goodsColor = #{goodscolor,jdbcType=INTEGER},
+      </if>
+      <if test="goodsformatid != null" >
+        goodsFormatId = #{goodsformatid,jdbcType=INTEGER},
+      </if>
+      <if test="goodssellerid != null" >
+        goodsSellerId = #{goodssellerid,jdbcType=INTEGER},
+      </if>
+      <if test="mftid != null" >
+        mftId = #{mftid,jdbcType=INTEGER},
+      </if>
+      <if test="goodspicurl != null" >
+        goodsPicUrl = #{goodspicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum = #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="goodstypeid != null" >
+        goodsTypeId = #{goodstypeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodscmt != null" >
+        goodsCmt = #{goodscmt,jdbcType=INTEGER},
+      </if>
+      <if test="goodsuploadtime != null" >
+        goodsUploadTime = #{goodsuploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodssellcount != null" >
+        goodsSellCount = #{goodssellcount,jdbcType=INTEGER},
+      </if>
+      <if test="goodshotsell != null" >
+        goodsHotSell = #{goodshotsell,jdbcType=INTEGER},
+      </if>
+      <if test="goodsgroupbuy != null" >
+        goodsGroupBuy = #{goodsgroupbuy,jdbcType=INTEGER},
+      </if>
+      <if test="goodsrecommend != null" >
+        goodsRecommend = #{goodsrecommend,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Goods" >
+    update goodstbl
+    set goodsName = #{goodsname,jdbcType=VARCHAR},
+      goodsMrtPrice = #{goodsmrtprice,jdbcType=DECIMAL},
+      goodsMemPrice = #{goodsmemprice,jdbcType=DECIMAL},
+      goodsDiscount = #{goodsdiscount,jdbcType=DECIMAL},
+      goodsDsc = #{goodsdsc,jdbcType=VARCHAR},
+      goodsColor = #{goodscolor,jdbcType=INTEGER},
+      goodsFormatId = #{goodsformatid,jdbcType=INTEGER},
+      goodsSellerId = #{goodssellerid,jdbcType=INTEGER},
+      mftId = #{mftid,jdbcType=INTEGER},
+      goodsPicUrl = #{goodspicurl,jdbcType=VARCHAR},
+      goodsNum = #{goodsnum,jdbcType=INTEGER},
+      goodsTypeId = #{goodstypeid,jdbcType=INTEGER},
+      goodsCmt = #{goodscmt,jdbcType=INTEGER},
+      goodsUploadTime = #{goodsuploadtime,jdbcType=TIMESTAMP},
+      goodsSellCount = #{goodssellcount,jdbcType=INTEGER},
+      goodsHotSell = #{goodshotsell,jdbcType=INTEGER},
+      goodsGroupBuy = #{goodsgroupbuy,jdbcType=INTEGER},
+      goodsRecommend = #{goodsrecommend,jdbcType=INTEGER}
+    where goodsId = #{goodsid,jdbcType=INTEGER}
+  </update>
+</mapper>

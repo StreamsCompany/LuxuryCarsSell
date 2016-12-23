@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.GoodsTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.GoodsType" >
+    <id column="goodsTypeId" property="goodstypeid" jdbcType="INTEGER" />
+    <result column="goodsTypeName" property="goodstypename" jdbcType="VARCHAR" />
+    <result column="goodsTypeBTId" property="goodstypebtid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goodsTypeId, goodsTypeName, goodsTypeBTId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goodstypetbl
+    where goodsTypeId = #{goodstypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goodstypetbl
+    where goodsTypeId = #{goodstypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.GoodsType" >
+    insert into goodstypetbl (goodsTypeId, goodsTypeName, goodsTypeBTId
+      )
+    values (#{goodstypeid,jdbcType=INTEGER}, #{goodstypename,jdbcType=VARCHAR}, #{goodstypebtid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.GoodsType" >
+    insert into goodstypetbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodstypeid != null" >
+        goodsTypeId,
+      </if>
+      <if test="goodstypename != null" >
+        goodsTypeName,
+      </if>
+      <if test="goodstypebtid != null" >
+        goodsTypeBTId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodstypeid != null" >
+        #{goodstypeid,jdbcType=INTEGER},
+      </if>
+      <if test="goodstypename != null" >
+        #{goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypebtid != null" >
+        #{goodstypebtid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.GoodsType" >
+    update goodstypetbl
+    <set >
+      <if test="goodstypename != null" >
+        goodsTypeName = #{goodstypename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodstypebtid != null" >
+        goodsTypeBTId = #{goodstypebtid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goodsTypeId = #{goodstypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.GoodsType" >
+    update goodstypetbl
+    set goodsTypeName = #{goodstypename,jdbcType=VARCHAR},
+      goodsTypeBTId = #{goodstypebtid,jdbcType=INTEGER}
+    where goodsTypeId = #{goodstypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

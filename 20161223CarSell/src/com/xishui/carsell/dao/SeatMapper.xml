@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.SeatMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Seat" >
+    <id column="seatid" property="seatid" jdbcType="INTEGER" />
+    <result column="seatname" property="seatname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    seatid, seatname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seat
+    where seatid = #{seatid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seat
+    where seatid = #{seatid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Seat" >
+    insert into seat (seatid, seatname)
+    values (#{seatid,jdbcType=INTEGER}, #{seatname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Seat" >
+    insert into seat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seatid != null" >
+        seatid,
+      </if>
+      <if test="seatname != null" >
+        seatname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seatid != null" >
+        #{seatid,jdbcType=INTEGER},
+      </if>
+      <if test="seatname != null" >
+        #{seatname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Seat" >
+    update seat
+    <set >
+      <if test="seatname != null" >
+        seatname = #{seatname,jdbcType=CHAR},
+      </if>
+    </set>
+    where seatid = #{seatid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Seat" >
+    update seat
+    set seatname = #{seatname,jdbcType=CHAR}
+    where seatid = #{seatid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.NumberMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Number" >
+    <id column="numid" property="numid" jdbcType="INTEGER" />
+    <result column="seriesid" property="seriesid" jdbcType="INTEGER" />
+    <result column="numname" property="numname" jdbcType="CHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    numid, seriesid, numname, price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from number
+    where numid = #{numid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from number
+    where numid = #{numid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Number" >
+    insert into number (numid, seriesid, numname, 
+      price)
+    values (#{numid,jdbcType=INTEGER}, #{seriesid,jdbcType=INTEGER}, #{numname,jdbcType=CHAR}, 
+      #{price,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Number" >
+    insert into number
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="numid != null" >
+        numid,
+      </if>
+      <if test="seriesid != null" >
+        seriesid,
+      </if>
+      <if test="numname != null" >
+        numname,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="numid != null" >
+        #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="seriesid != null" >
+        #{seriesid,jdbcType=INTEGER},
+      </if>
+      <if test="numname != null" >
+        #{numname,jdbcType=CHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Number" >
+    update number
+    <set >
+      <if test="seriesid != null" >
+        seriesid = #{seriesid,jdbcType=INTEGER},
+      </if>
+      <if test="numname != null" >
+        numname = #{numname,jdbcType=CHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where numid = #{numid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Number" >
+    update number
+    set seriesid = #{seriesid,jdbcType=INTEGER},
+      numname = #{numname,jdbcType=CHAR},
+      price = #{price,jdbcType=DECIMAL}
+    where numid = #{numid,jdbcType=INTEGER}
+  </update>
+</mapper>

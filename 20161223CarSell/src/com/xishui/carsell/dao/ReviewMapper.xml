@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.ReviewMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Review" >
+    <id column="reviewId" property="reviewid" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="reviewText" property="reviewtext" jdbcType="VARCHAR" />
+    <result column="reviewPicUrl" property="reviewpicurl" jdbcType="VARCHAR" />
+    <result column="reviewTime" property="reviewtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reviewId, goodsId, userId, reviewText, reviewPicUrl, reviewTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from reviewtbl
+    where reviewId = #{reviewid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from reviewtbl
+    where reviewId = #{reviewid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Review" >
+    insert into reviewtbl (reviewId, goodsId, userId, 
+      reviewText, reviewPicUrl, reviewTime
+      )
+    values (#{reviewid,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{reviewtext,jdbcType=VARCHAR}, #{reviewpicurl,jdbcType=VARCHAR}, #{reviewtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Review" >
+    insert into reviewtbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="reviewid != null" >
+        reviewId,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="reviewtext != null" >
+        reviewText,
+      </if>
+      <if test="reviewpicurl != null" >
+        reviewPicUrl,
+      </if>
+      <if test="reviewtime != null" >
+        reviewTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="reviewid != null" >
+        #{reviewid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="reviewtext != null" >
+        #{reviewtext,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewpicurl != null" >
+        #{reviewpicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtime != null" >
+        #{reviewtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Review" >
+    update reviewtbl
+    <set >
+      <if test="goodsid != null" >
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="reviewtext != null" >
+        reviewText = #{reviewtext,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewpicurl != null" >
+        reviewPicUrl = #{reviewpicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewtime != null" >
+        reviewTime = #{reviewtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where reviewId = #{reviewid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Review" >
+    update reviewtbl
+    set goodsId = #{goodsid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      reviewText = #{reviewtext,jdbcType=VARCHAR},
+      reviewPicUrl = #{reviewpicurl,jdbcType=VARCHAR},
+      reviewTime = #{reviewtime,jdbcType=TIMESTAMP}
+    where reviewId = #{reviewid,jdbcType=INTEGER}
+  </update>
+</mapper>

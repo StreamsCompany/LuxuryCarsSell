@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.CartDscMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.CartDsc" >
+    <id column="cartDscId" property="cartdscid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="cartId" property="cartid" jdbcType="INTEGER" />
+    <result column="goodsNum" property="goodsnum" jdbcType="INTEGER" />
+    <result column="cartGooosAddTime" property="cartgooosaddtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartDscId, userId, cartId, goodsNum, cartGooosAddTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cartdscidtbl
+    where cartDscId = #{cartdscid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cartdscidtbl
+    where cartDscId = #{cartdscid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.CartDsc" >
+    insert into cartdscidtbl (cartDscId, userId, cartId, 
+      goodsNum, cartGooosAddTime)
+    values (#{cartdscid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{cartid,jdbcType=INTEGER}, 
+      #{goodsnum,jdbcType=INTEGER}, #{cartgooosaddtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.CartDsc" >
+    insert into cartdscidtbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartdscid != null" >
+        cartDscId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="cartid != null" >
+        cartId,
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum,
+      </if>
+      <if test="cartgooosaddtime != null" >
+        cartGooosAddTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartdscid != null" >
+        #{cartdscid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cartid != null" >
+        #{cartid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnum != null" >
+        #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="cartgooosaddtime != null" >
+        #{cartgooosaddtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.CartDsc" >
+    update cartdscidtbl
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="cartid != null" >
+        cartId = #{cartid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsnum != null" >
+        goodsNum = #{goodsnum,jdbcType=INTEGER},
+      </if>
+      <if test="cartgooosaddtime != null" >
+        cartGooosAddTime = #{cartgooosaddtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cartDscId = #{cartdscid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.CartDsc" >
+    update cartdscidtbl
+    set userId = #{userid,jdbcType=INTEGER},
+      cartId = #{cartid,jdbcType=INTEGER},
+      goodsNum = #{goodsnum,jdbcType=INTEGER},
+      cartGooosAddTime = #{cartgooosaddtime,jdbcType=TIMESTAMP}
+    where cartDscId = #{cartdscid,jdbcType=INTEGER}
+  </update>
+</mapper>

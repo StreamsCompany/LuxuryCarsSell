@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.ReceiverMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Receiver" >
+    <id column="receiverId" property="receiverid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="receiverName" property="receivername" jdbcType="VARCHAR" />
+    <result column="receiverSex" property="receiversex" jdbcType="INTEGER" />
+    <result column="receiverAddress" property="receiveraddress" jdbcType="VARCHAR" />
+    <result column="receiverCode" property="receivercode" jdbcType="INTEGER" />
+    <result column="receiverTel" property="receivertel" jdbcType="VARCHAR" />
+    <result column="receiverEmail" property="receiveremail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    receiverId, userId, receiverName, receiverSex, receiverAddress, receiverCode, receiverTel, 
+    receiverEmail
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from receivertbl
+    where receiverId = #{receiverid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from receivertbl
+    where receiverId = #{receiverid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Receiver" >
+    insert into receivertbl (receiverId, userId, receiverName, 
+      receiverSex, receiverAddress, receiverCode, 
+      receiverTel, receiverEmail)
+    values (#{receiverid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{receivername,jdbcType=VARCHAR}, 
+      #{receiversex,jdbcType=INTEGER}, #{receiveraddress,jdbcType=VARCHAR}, #{receivercode,jdbcType=INTEGER}, 
+      #{receivertel,jdbcType=VARCHAR}, #{receiveremail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Receiver" >
+    insert into receivertbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="receiverid != null" >
+        receiverId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="receivername != null" >
+        receiverName,
+      </if>
+      <if test="receiversex != null" >
+        receiverSex,
+      </if>
+      <if test="receiveraddress != null" >
+        receiverAddress,
+      </if>
+      <if test="receivercode != null" >
+        receiverCode,
+      </if>
+      <if test="receivertel != null" >
+        receiverTel,
+      </if>
+      <if test="receiveremail != null" >
+        receiverEmail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="receiverid != null" >
+        #{receiverid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null" >
+        #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receiversex != null" >
+        #{receiversex,jdbcType=INTEGER},
+      </if>
+      <if test="receiveraddress != null" >
+        #{receiveraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivercode != null" >
+        #{receivercode,jdbcType=INTEGER},
+      </if>
+      <if test="receivertel != null" >
+        #{receivertel,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveremail != null" >
+        #{receiveremail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Receiver" >
+    update receivertbl
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="receivername != null" >
+        receiverName = #{receivername,jdbcType=VARCHAR},
+      </if>
+      <if test="receiversex != null" >
+        receiverSex = #{receiversex,jdbcType=INTEGER},
+      </if>
+      <if test="receiveraddress != null" >
+        receiverAddress = #{receiveraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receivercode != null" >
+        receiverCode = #{receivercode,jdbcType=INTEGER},
+      </if>
+      <if test="receivertel != null" >
+        receiverTel = #{receivertel,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveremail != null" >
+        receiverEmail = #{receiveremail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where receiverId = #{receiverid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Receiver" >
+    update receivertbl
+    set userId = #{userid,jdbcType=INTEGER},
+      receiverName = #{receivername,jdbcType=VARCHAR},
+      receiverSex = #{receiversex,jdbcType=INTEGER},
+      receiverAddress = #{receiveraddress,jdbcType=VARCHAR},
+      receiverCode = #{receivercode,jdbcType=INTEGER},
+      receiverTel = #{receivertel,jdbcType=VARCHAR},
+      receiverEmail = #{receiveremail,jdbcType=VARCHAR}
+    where receiverId = #{receiverid,jdbcType=INTEGER}
+  </update>
+</mapper>

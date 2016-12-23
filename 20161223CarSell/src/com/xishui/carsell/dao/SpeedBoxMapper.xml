@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.SpeedBoxMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.SpeedBox" >
+    <id column="speedboxid" property="speedboxid" jdbcType="INTEGER" />
+    <result column="speedboxname" property="speedboxname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    speedboxid, speedboxname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from speedboxid
+    where speedboxid = #{speedboxid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from speedboxid
+    where speedboxid = #{speedboxid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.SpeedBox" >
+    insert into speedboxid (speedboxid, speedboxname)
+    values (#{speedboxid,jdbcType=INTEGER}, #{speedboxname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.SpeedBox" >
+    insert into speedboxid
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="speedboxid != null" >
+        speedboxid,
+      </if>
+      <if test="speedboxname != null" >
+        speedboxname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="speedboxid != null" >
+        #{speedboxid,jdbcType=INTEGER},
+      </if>
+      <if test="speedboxname != null" >
+        #{speedboxname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.SpeedBox" >
+    update speedboxid
+    <set >
+      <if test="speedboxname != null" >
+        speedboxname = #{speedboxname,jdbcType=CHAR},
+      </if>
+    </set>
+    where speedboxid = #{speedboxid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.SpeedBox" >
+    update speedboxid
+    set speedboxname = #{speedboxname,jdbcType=CHAR}
+    where speedboxid = #{speedboxid,jdbcType=INTEGER}
+  </update>
+</mapper>

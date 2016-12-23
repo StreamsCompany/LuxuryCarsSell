@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Order" >
+    <id column="orderId" property="orderid" jdbcType="INTEGER" />
+    <result column="orderStateId" property="orderstateid" jdbcType="INTEGER" />
+    <result column="receiverId" property="receiverid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="payId" property="payid" jdbcType="INTEGER" />
+    <result column="orderCreatTime" property="ordercreattime" jdbcType="TIMESTAMP" />
+    <result column="orderPayTime" property="orderpaytime" jdbcType="TIMESTAMP" />
+    <result column="orderSendTime" property="ordersendtime" jdbcType="TIMESTAMP" />
+    <result column="orderDealTime" property="orderdealtime" jdbcType="TIMESTAMP" />
+    <result column="orderGoodsPayMoney" property="ordergoodspaymoney" jdbcType="DECIMAL" />
+    <result column="orderWaybillPrice" property="orderwaybillprice" jdbcType="DECIMAL" />
+    <result column="orderWaybillId" property="orderwaybillid" jdbcType="INTEGER" />
+    <result column="orderGoodsSendType" property="ordergoodssendtype" jdbcType="INTEGER" />
+    <result column="orderMoneyPayType" property="ordermoneypaytype" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderId, orderStateId, receiverId, userId, payId, orderCreatTime, orderPayTime, orderSendTime, 
+    orderDealTime, orderGoodsPayMoney, orderWaybillPrice, orderWaybillId, orderGoodsSendType, 
+    orderMoneyPayType
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ordertbl
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ordertbl
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Order" >
+    insert into ordertbl (orderId, orderStateId, receiverId, 
+      userId, payId, orderCreatTime, 
+      orderPayTime, orderSendTime, orderDealTime, 
+      orderGoodsPayMoney, orderWaybillPrice, 
+      orderWaybillId, orderGoodsSendType, orderMoneyPayType
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{orderstateid,jdbcType=INTEGER}, #{receiverid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{payid,jdbcType=INTEGER}, #{ordercreattime,jdbcType=TIMESTAMP}, 
+      #{orderpaytime,jdbcType=TIMESTAMP}, #{ordersendtime,jdbcType=TIMESTAMP}, #{orderdealtime,jdbcType=TIMESTAMP}, 
+      #{ordergoodspaymoney,jdbcType=DECIMAL}, #{orderwaybillprice,jdbcType=DECIMAL}, 
+      #{orderwaybillid,jdbcType=INTEGER}, #{ordergoodssendtype,jdbcType=INTEGER}, #{ordermoneypaytype,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Order" >
+    insert into ordertbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderId,
+      </if>
+      <if test="orderstateid != null" >
+        orderStateId,
+      </if>
+      <if test="receiverid != null" >
+        receiverId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="payid != null" >
+        payId,
+      </if>
+      <if test="ordercreattime != null" >
+        orderCreatTime,
+      </if>
+      <if test="orderpaytime != null" >
+        orderPayTime,
+      </if>
+      <if test="ordersendtime != null" >
+        orderSendTime,
+      </if>
+      <if test="orderdealtime != null" >
+        orderDealTime,
+      </if>
+      <if test="ordergoodspaymoney != null" >
+        orderGoodsPayMoney,
+      </if>
+      <if test="orderwaybillprice != null" >
+        orderWaybillPrice,
+      </if>
+      <if test="orderwaybillid != null" >
+        orderWaybillId,
+      </if>
+      <if test="ordergoodssendtype != null" >
+        orderGoodsSendType,
+      </if>
+      <if test="ordermoneypaytype != null" >
+        orderMoneyPayType,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderstateid != null" >
+        #{orderstateid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverid != null" >
+        #{receiverid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="payid != null" >
+        #{payid,jdbcType=INTEGER},
+      </if>
+      <if test="ordercreattime != null" >
+        #{ordercreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderpaytime != null" >
+        #{orderpaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersendtime != null" >
+        #{ordersendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderdealtime != null" >
+        #{orderdealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordergoodspaymoney != null" >
+        #{ordergoodspaymoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderwaybillprice != null" >
+        #{orderwaybillprice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderwaybillid != null" >
+        #{orderwaybillid,jdbcType=INTEGER},
+      </if>
+      <if test="ordergoodssendtype != null" >
+        #{ordergoodssendtype,jdbcType=INTEGER},
+      </if>
+      <if test="ordermoneypaytype != null" >
+        #{ordermoneypaytype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Order" >
+    update ordertbl
+    <set >
+      <if test="orderstateid != null" >
+        orderStateId = #{orderstateid,jdbcType=INTEGER},
+      </if>
+      <if test="receiverid != null" >
+        receiverId = #{receiverid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="payid != null" >
+        payId = #{payid,jdbcType=INTEGER},
+      </if>
+      <if test="ordercreattime != null" >
+        orderCreatTime = #{ordercreattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderpaytime != null" >
+        orderPayTime = #{orderpaytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordersendtime != null" >
+        orderSendTime = #{ordersendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderdealtime != null" >
+        orderDealTime = #{orderdealtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ordergoodspaymoney != null" >
+        orderGoodsPayMoney = #{ordergoodspaymoney,jdbcType=DECIMAL},
+      </if>
+      <if test="orderwaybillprice != null" >
+        orderWaybillPrice = #{orderwaybillprice,jdbcType=DECIMAL},
+      </if>
+      <if test="orderwaybillid != null" >
+        orderWaybillId = #{orderwaybillid,jdbcType=INTEGER},
+      </if>
+      <if test="ordergoodssendtype != null" >
+        orderGoodsSendType = #{ordergoodssendtype,jdbcType=INTEGER},
+      </if>
+      <if test="ordermoneypaytype != null" >
+        orderMoneyPayType = #{ordermoneypaytype,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Order" >
+    update ordertbl
+    set orderStateId = #{orderstateid,jdbcType=INTEGER},
+      receiverId = #{receiverid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      payId = #{payid,jdbcType=INTEGER},
+      orderCreatTime = #{ordercreattime,jdbcType=TIMESTAMP},
+      orderPayTime = #{orderpaytime,jdbcType=TIMESTAMP},
+      orderSendTime = #{ordersendtime,jdbcType=TIMESTAMP},
+      orderDealTime = #{orderdealtime,jdbcType=TIMESTAMP},
+      orderGoodsPayMoney = #{ordergoodspaymoney,jdbcType=DECIMAL},
+      orderWaybillPrice = #{orderwaybillprice,jdbcType=DECIMAL},
+      orderWaybillId = #{orderwaybillid,jdbcType=INTEGER},
+      orderGoodsSendType = #{ordergoodssendtype,jdbcType=INTEGER},
+      orderMoneyPayType = #{ordermoneypaytype,jdbcType=INTEGER}
+    where orderId = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

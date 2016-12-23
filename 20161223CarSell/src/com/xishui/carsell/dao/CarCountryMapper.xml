@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.CarCountryMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.CarCountry" >
+    <id column="counid" property="counid" jdbcType="INTEGER" />
+    <result column="counname" property="counname" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    counid, counname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from carcountrytbl
+    where counid = #{counid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from carcountrytbl
+    where counid = #{counid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.CarCountry" >
+    insert into carcountrytbl (counid, counname)
+    values (#{counid,jdbcType=INTEGER}, #{counname,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.CarCountry" >
+    insert into carcountrytbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="counid != null" >
+        counid,
+      </if>
+      <if test="counname != null" >
+        counname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="counid != null" >
+        #{counid,jdbcType=INTEGER},
+      </if>
+      <if test="counname != null" >
+        #{counname,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.CarCountry" >
+    update carcountrytbl
+    <set >
+      <if test="counname != null" >
+        counname = #{counname,jdbcType=CHAR},
+      </if>
+    </set>
+    where counid = #{counid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.CarCountry" >
+    update carcountrytbl
+    set counname = #{counname,jdbcType=CHAR}
+    where counid = #{counid,jdbcType=INTEGER}
+  </update>
+</mapper>

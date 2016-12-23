@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.SeriesMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Series" >
+    <id column="seriesid" property="seriesid" jdbcType="INTEGER" />
+    <result column="brandid" property="brandid" jdbcType="INTEGER" />
+    <result column="seriesname" property="seriesname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    seriesid, brandid, seriesname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from seriestbl
+    where seriesid = #{seriesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seriestbl
+    where seriesid = #{seriesid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Series" >
+    insert into seriestbl (seriesid, brandid, seriesname
+      )
+    values (#{seriesid,jdbcType=INTEGER}, #{brandid,jdbcType=INTEGER}, #{seriesname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Series" >
+    insert into seriestbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seriesid != null" >
+        seriesid,
+      </if>
+      <if test="brandid != null" >
+        brandid,
+      </if>
+      <if test="seriesname != null" >
+        seriesname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seriesid != null" >
+        #{seriesid,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="seriesname != null" >
+        #{seriesname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Series" >
+    update seriestbl
+    <set >
+      <if test="brandid != null" >
+        brandid = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="seriesname != null" >
+        seriesname = #{seriesname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seriesid = #{seriesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Series" >
+    update seriestbl
+    set brandid = #{brandid,jdbcType=INTEGER},
+      seriesname = #{seriesname,jdbcType=VARCHAR}
+    where seriesid = #{seriesid,jdbcType=INTEGER}
+  </update>
+</mapper>

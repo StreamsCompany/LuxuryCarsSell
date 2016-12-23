@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.MftMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Mft" >
+    <id column="mftId" property="mftid" jdbcType="INTEGER" />
+    <result column="mftName" property="mftname" jdbcType="CHAR" />
+    <result column="mftAddress" property="mftaddress" jdbcType="CHAR" />
+    <result column="mftTel" property="mfttel" jdbcType="CHAR" />
+    <result column="mftComment" property="mftcomment" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mftId, mftName, mftAddress, mftTel, mftComment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mfttbl
+    where mftId = #{mftid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mfttbl
+    where mftId = #{mftid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Mft" >
+    insert into mfttbl (mftId, mftName, mftAddress, 
+      mftTel, mftComment)
+    values (#{mftid,jdbcType=INTEGER}, #{mftname,jdbcType=CHAR}, #{mftaddress,jdbcType=CHAR}, 
+      #{mfttel,jdbcType=CHAR}, #{mftcomment,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Mft" >
+    insert into mfttbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mftid != null" >
+        mftId,
+      </if>
+      <if test="mftname != null" >
+        mftName,
+      </if>
+      <if test="mftaddress != null" >
+        mftAddress,
+      </if>
+      <if test="mfttel != null" >
+        mftTel,
+      </if>
+      <if test="mftcomment != null" >
+        mftComment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mftid != null" >
+        #{mftid,jdbcType=INTEGER},
+      </if>
+      <if test="mftname != null" >
+        #{mftname,jdbcType=CHAR},
+      </if>
+      <if test="mftaddress != null" >
+        #{mftaddress,jdbcType=CHAR},
+      </if>
+      <if test="mfttel != null" >
+        #{mfttel,jdbcType=CHAR},
+      </if>
+      <if test="mftcomment != null" >
+        #{mftcomment,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Mft" >
+    update mfttbl
+    <set >
+      <if test="mftname != null" >
+        mftName = #{mftname,jdbcType=CHAR},
+      </if>
+      <if test="mftaddress != null" >
+        mftAddress = #{mftaddress,jdbcType=CHAR},
+      </if>
+      <if test="mfttel != null" >
+        mftTel = #{mfttel,jdbcType=CHAR},
+      </if>
+      <if test="mftcomment != null" >
+        mftComment = #{mftcomment,jdbcType=CHAR},
+      </if>
+    </set>
+    where mftId = #{mftid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Mft" >
+    update mfttbl
+    set mftName = #{mftname,jdbcType=CHAR},
+      mftAddress = #{mftaddress,jdbcType=CHAR},
+      mftTel = #{mfttel,jdbcType=CHAR},
+      mftComment = #{mftcomment,jdbcType=CHAR}
+    where mftId = #{mftid,jdbcType=INTEGER}
+  </update>
+</mapper>

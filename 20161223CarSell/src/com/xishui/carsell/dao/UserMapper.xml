@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.User" >
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="userNickName" property="usernickname" jdbcType="CHAR" />
+    <result column="userName" property="username" jdbcType="CHAR" />
+    <result column="userSex" property="usersex" jdbcType="INTEGER" />
+    <result column="userPsd" property="userpsd" jdbcType="CHAR" />
+    <result column="useTel" property="usetel" jdbcType="CHAR" />
+    <result column="userAddress" property="useraddress" jdbcType="CHAR" />
+    <result column="userEmail" property="useremail" jdbcType="INTEGER" />
+    <result column="userPoints" property="userpoints" jdbcType="CHAR" />
+    <result column="userLevel" property="userlevel" jdbcType="INTEGER" />
+    <result column="userState" property="userstate" jdbcType="INTEGER" />
+    <result column="userCardId" property="usercardid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, userNickName, userName, userSex, userPsd, useTel, userAddress, userEmail, 
+    userPoints, userLevel, userState, userCardId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usertbl
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usertbl
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.User" >
+    insert into usertbl (userId, userNickName, userName, 
+      userSex, userPsd, useTel, 
+      userAddress, userEmail, userPoints, 
+      userLevel, userState, userCardId
+      )
+    values (#{userid,jdbcType=INTEGER}, #{usernickname,jdbcType=CHAR}, #{username,jdbcType=CHAR}, 
+      #{usersex,jdbcType=INTEGER}, #{userpsd,jdbcType=CHAR}, #{usetel,jdbcType=CHAR}, 
+      #{useraddress,jdbcType=CHAR}, #{useremail,jdbcType=INTEGER}, #{userpoints,jdbcType=CHAR}, 
+      #{userlevel,jdbcType=INTEGER}, #{userstate,jdbcType=INTEGER}, #{usercardid,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.User" >
+    insert into usertbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="usernickname != null" >
+        userNickName,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="usersex != null" >
+        userSex,
+      </if>
+      <if test="userpsd != null" >
+        userPsd,
+      </if>
+      <if test="usetel != null" >
+        useTel,
+      </if>
+      <if test="useraddress != null" >
+        userAddress,
+      </if>
+      <if test="useremail != null" >
+        userEmail,
+      </if>
+      <if test="userpoints != null" >
+        userPoints,
+      </if>
+      <if test="userlevel != null" >
+        userLevel,
+      </if>
+      <if test="userstate != null" >
+        userState,
+      </if>
+      <if test="usercardid != null" >
+        userCardId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="usernickname != null" >
+        #{usernickname,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=CHAR},
+      </if>
+      <if test="usersex != null" >
+        #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="userpsd != null" >
+        #{userpsd,jdbcType=CHAR},
+      </if>
+      <if test="usetel != null" >
+        #{usetel,jdbcType=CHAR},
+      </if>
+      <if test="useraddress != null" >
+        #{useraddress,jdbcType=CHAR},
+      </if>
+      <if test="useremail != null" >
+        #{useremail,jdbcType=INTEGER},
+      </if>
+      <if test="userpoints != null" >
+        #{userpoints,jdbcType=CHAR},
+      </if>
+      <if test="userlevel != null" >
+        #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="userstate != null" >
+        #{userstate,jdbcType=INTEGER},
+      </if>
+      <if test="usercardid != null" >
+        #{usercardid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.User" >
+    update usertbl
+    <set >
+      <if test="usernickname != null" >
+        userNickName = #{usernickname,jdbcType=CHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=CHAR},
+      </if>
+      <if test="usersex != null" >
+        userSex = #{usersex,jdbcType=INTEGER},
+      </if>
+      <if test="userpsd != null" >
+        userPsd = #{userpsd,jdbcType=CHAR},
+      </if>
+      <if test="usetel != null" >
+        useTel = #{usetel,jdbcType=CHAR},
+      </if>
+      <if test="useraddress != null" >
+        userAddress = #{useraddress,jdbcType=CHAR},
+      </if>
+      <if test="useremail != null" >
+        userEmail = #{useremail,jdbcType=INTEGER},
+      </if>
+      <if test="userpoints != null" >
+        userPoints = #{userpoints,jdbcType=CHAR},
+      </if>
+      <if test="userlevel != null" >
+        userLevel = #{userlevel,jdbcType=INTEGER},
+      </if>
+      <if test="userstate != null" >
+        userState = #{userstate,jdbcType=INTEGER},
+      </if>
+      <if test="usercardid != null" >
+        userCardId = #{usercardid,jdbcType=CHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.User" >
+    update usertbl
+    set userNickName = #{usernickname,jdbcType=CHAR},
+      userName = #{username,jdbcType=CHAR},
+      userSex = #{usersex,jdbcType=INTEGER},
+      userPsd = #{userpsd,jdbcType=CHAR},
+      useTel = #{usetel,jdbcType=CHAR},
+      userAddress = #{useraddress,jdbcType=CHAR},
+      userEmail = #{useremail,jdbcType=INTEGER},
+      userPoints = #{userpoints,jdbcType=CHAR},
+      userLevel = #{userlevel,jdbcType=INTEGER},
+      userState = #{userstate,jdbcType=INTEGER},
+      userCardId = #{usercardid,jdbcType=CHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

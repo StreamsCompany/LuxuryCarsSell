@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xishui.carsell.dao.SellMapper" >
+  <resultMap id="BaseResultMap" type="com.xishui.carsell.entity.Sell" >
+    <id column="sellid" property="sellid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="coloid" property="coloid" jdbcType="INTEGER" />
+    <result column="numid" property="numid" jdbcType="INTEGER" />
+    <result column="styleid" property="styleid" jdbcType="INTEGER" />
+    <result column="seatid" property="seatid" jdbcType="INTEGER" />
+    <result column="oilid" property="oilid" jdbcType="INTEGER" />
+    <result column="speedboxid" property="speedboxid" jdbcType="INTEGER" />
+    <result column="outid" property="outid" jdbcType="INTEGER" />
+    <result column="regdate" property="regdate" jdbcType="TIMESTAMP" />
+    <result column="milieage" property="milieage" jdbcType="DECIMAL" />
+    <result column="factprice" property="factprice" jdbcType="DECIMAL" />
+    <result column="path" property="path" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sellid, userId, coloid, numid, styleid, seatid, oilid, speedboxid, outid, regdate, 
+    milieage, factprice, path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from selltbl
+    where sellid = #{sellid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from selltbl
+    where sellid = #{sellid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xishui.carsell.entity.Sell" >
+    insert into selltbl (sellid, userId, coloid, 
+      numid, styleid, seatid, 
+      oilid, speedboxid, outid, 
+      regdate, milieage, factprice, 
+      path)
+    values (#{sellid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{coloid,jdbcType=INTEGER}, 
+      #{numid,jdbcType=INTEGER}, #{styleid,jdbcType=INTEGER}, #{seatid,jdbcType=INTEGER}, 
+      #{oilid,jdbcType=INTEGER}, #{speedboxid,jdbcType=INTEGER}, #{outid,jdbcType=INTEGER}, 
+      #{regdate,jdbcType=TIMESTAMP}, #{milieage,jdbcType=DECIMAL}, #{factprice,jdbcType=DECIMAL}, 
+      #{path,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xishui.carsell.entity.Sell" >
+    insert into selltbl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sellid != null" >
+        sellid,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="coloid != null" >
+        coloid,
+      </if>
+      <if test="numid != null" >
+        numid,
+      </if>
+      <if test="styleid != null" >
+        styleid,
+      </if>
+      <if test="seatid != null" >
+        seatid,
+      </if>
+      <if test="oilid != null" >
+        oilid,
+      </if>
+      <if test="speedboxid != null" >
+        speedboxid,
+      </if>
+      <if test="outid != null" >
+        outid,
+      </if>
+      <if test="regdate != null" >
+        regdate,
+      </if>
+      <if test="milieage != null" >
+        milieage,
+      </if>
+      <if test="factprice != null" >
+        factprice,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sellid != null" >
+        #{sellid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="coloid != null" >
+        #{coloid,jdbcType=INTEGER},
+      </if>
+      <if test="numid != null" >
+        #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="styleid != null" >
+        #{styleid,jdbcType=INTEGER},
+      </if>
+      <if test="seatid != null" >
+        #{seatid,jdbcType=INTEGER},
+      </if>
+      <if test="oilid != null" >
+        #{oilid,jdbcType=INTEGER},
+      </if>
+      <if test="speedboxid != null" >
+        #{speedboxid,jdbcType=INTEGER},
+      </if>
+      <if test="outid != null" >
+        #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="regdate != null" >
+        #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="milieage != null" >
+        #{milieage,jdbcType=DECIMAL},
+      </if>
+      <if test="factprice != null" >
+        #{factprice,jdbcType=DECIMAL},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xishui.carsell.entity.Sell" >
+    update selltbl
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="coloid != null" >
+        coloid = #{coloid,jdbcType=INTEGER},
+      </if>
+      <if test="numid != null" >
+        numid = #{numid,jdbcType=INTEGER},
+      </if>
+      <if test="styleid != null" >
+        styleid = #{styleid,jdbcType=INTEGER},
+      </if>
+      <if test="seatid != null" >
+        seatid = #{seatid,jdbcType=INTEGER},
+      </if>
+      <if test="oilid != null" >
+        oilid = #{oilid,jdbcType=INTEGER},
+      </if>
+      <if test="speedboxid != null" >
+        speedboxid = #{speedboxid,jdbcType=INTEGER},
+      </if>
+      <if test="outid != null" >
+        outid = #{outid,jdbcType=INTEGER},
+      </if>
+      <if test="regdate != null" >
+        regdate = #{regdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="milieage != null" >
+        milieage = #{milieage,jdbcType=DECIMAL},
+      </if>
+      <if test="factprice != null" >
+        factprice = #{factprice,jdbcType=DECIMAL},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=CHAR},
+      </if>
+    </set>
+    where sellid = #{sellid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xishui.carsell.entity.Sell" >
+    update selltbl
+    set userId = #{userid,jdbcType=INTEGER},
+      coloid = #{coloid,jdbcType=INTEGER},
+      numid = #{numid,jdbcType=INTEGER},
+      styleid = #{styleid,jdbcType=INTEGER},
+      seatid = #{seatid,jdbcType=INTEGER},
+      oilid = #{oilid,jdbcType=INTEGER},
+      speedboxid = #{speedboxid,jdbcType=INTEGER},
+      outid = #{outid,jdbcType=INTEGER},
+      regdate = #{regdate,jdbcType=TIMESTAMP},
+      milieage = #{milieage,jdbcType=DECIMAL},
+      factprice = #{factprice,jdbcType=DECIMAL},
+      path = #{path,jdbcType=CHAR}
+    where sellid = #{sellid,jdbcType=INTEGER}
+  </update>
+</mapper>
